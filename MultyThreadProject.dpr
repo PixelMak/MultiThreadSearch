@@ -2,13 +2,13 @@ program MultyThreadProject;
 
 uses
   Vcl.Forms,
-  MainFormUnit in 'MainFormUnit.pas' {Form1};
+  MainFormUnit in 'MainFormUnit.pas' {MainForm};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TMainForm, MainForm);
   Application.Run;
 end.
