@@ -3,7 +3,7 @@ object MainForm: TMainForm
   Top = 154
   Caption = 'Multy Thread Search App'
   ClientHeight = 636
-  ClientWidth = 972
+  ClientWidth = 1050
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,17 +11,18 @@ object MainForm: TMainForm
   Font.Name = 'Verdana'
   Font.Style = []
   Position = poDesigned
-  PixelsPerInch = 96
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
   TextHeight = 18
   object TopPanel: TPanel
     Left = 0
     Top = 0
-    Width = 972
+    Width = 1050
     Height = 77
     Align = alTop
     TabOrder = 0
     DesignSize = (
-      972
+      1050
       77)
     object lblFilePath: TLabel
       Left = 13
@@ -40,28 +41,28 @@ object MainForm: TMainForm
       OnClick = btnSelectFolderClick
     end
     object edtFilePath: TEdit
-      Left = 121
+      Left = 113
       Top = 39
-      Width = 842
+      Width = 920
       Height = 26
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 1
+      Text = 'D:\ThreadsTest\'
     end
   end
   object BottomPanel: TPanel
     Left = 0
     Top = 478
-    Width = 972
+    Width = 1050
     Height = 158
     Align = alBottom
     Caption = 'BottomPanel'
     TabOrder = 1
-    ExplicitTop = 376
-    ExplicitWidth = 885
+    Visible = False
     object pcThreadsLog: TPageControl
       Left = 1
       Top = 1
-      Width = 970
+      Width = 1048
       Height = 156
       ActivePage = shMainLog
       Align = alClient
@@ -78,14 +79,12 @@ object MainForm: TMainForm
     end
   end
   object RightPanel: TPanel
-    Left = 752
+    Left = 830
     Top = 77
     Width = 220
     Height = 401
     Align = alRight
     TabOrder = 2
-    ExplicitTop = 65
-    ExplicitHeight = 413
     object lblThreadsCount: TLabel
       Left = 6
       Top = 110
@@ -107,16 +106,17 @@ object MainForm: TMainForm
       Height = 25
       Caption = 'Apply'
       TabOrder = 0
+      OnClick = btnApplyThreadsCountClick
     end
     object speThreads: TSpinEdit
       Left = 6
       Top = 131
       Width = 99
-      Height = 26
+      Height = 28
       MaxValue = 10000
       MinValue = 1
       TabOrder = 1
-      Value = 1
+      Value = 5
     end
     object btnStartSearch: TButton
       Left = 6
@@ -125,6 +125,7 @@ object MainForm: TMainForm
       Height = 25
       Caption = 'Start'
       TabOrder = 2
+      OnClick = btnStartSearchClick
     end
     object edtFileMask: TEdit
       Left = 6
@@ -132,6 +133,7 @@ object MainForm: TMainForm
       Width = 203
       Height = 26
       TabOrder = 3
+      Text = '*.txt'
     end
     object btnCancelSearch: TButton
       Left = 134
@@ -140,23 +142,20 @@ object MainForm: TMainForm
       Height = 25
       Caption = 'Cancel'
       TabOrder = 4
+      OnClick = btnCancelSearchClick
     end
   end
   object MiddlePanel: TPanel
     Left = 0
     Top = 77
-    Width = 752
+    Width = 830
     Height = 401
     Align = alClient
     TabOrder = 3
-    ExplicitLeft = 825
-    ExplicitTop = 49
-    ExplicitWidth = 41
-    ExplicitHeight = 452
     object StatsPanel: TPanel
       Left = 1
       Top = 1
-      Width = 750
+      Width = 828
       Height = 32
       Align = alTop
       TabOrder = 0
@@ -168,57 +167,23 @@ object MainForm: TMainForm
         Caption = 'Current threads in use:'
       end
     end
-    object GridData: TDBGrid
+    object StringGrid: TStringGrid
       Left = 1
       Top = 33
-      Width = 750
+      Width = 828
       Height = 367
       Align = alClient
-      DataSource = DataSource
+      ColCount = 2
+      FixedCols = 0
+      RowCount = 3
       TabOrder = 1
-      TitleFont.Charset = DEFAULT_CHARSET
-      TitleFont.Color = clWindowText
-      TitleFont.Height = 18
-      TitleFont.Name = 'Verdana'
-      TitleFont.Style = []
-      Columns = <
-        item
-          Expanded = False
-          FieldName = 'FileName'
-          Title.Alignment = taCenter
-          Title.Caption = 'File Name'
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'FilePath'
-          Title.Alignment = taCenter
-          Title.Caption = 'Full Path'
-          Width = 524
-          Visible = True
-        end>
-    end
-  end
-  object DataSource: TDataSource
-    DataSet = ClientDataSet
-    Left = 592
-    Top = 157
-  end
-  object ClientDataSet: TClientDataSet
-    PersistDataPacket.Data = {
-      540000009619E0BD01000000180000000200000000000300000054000846696C
-      654E616D6501004900000001000557494454480200020014000846696C655061
-      746801004900000001000557494454480200020014000000}
-    Active = True
-    Aggregates = <>
-    Params = <>
-    Left = 680
-    Top = 157
-    object ClientDataSetFileName: TStringField
-      FieldName = 'FileName'
-    end
-    object ClientDataSetFilePath: TStringField
-      FieldName = 'FilePath'
+      ColWidths = (
+        251
+        567)
+      RowHeights = (
+        24
+        24
+        24)
     end
   end
   object FileOpenDialog: TFileOpenDialog

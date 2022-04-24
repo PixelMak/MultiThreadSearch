@@ -2,7 +2,8 @@ program MultyThreadProject;
 
 uses
   Vcl.Forms,
-  MainFormUnit in 'MainFormUnit.pas' {MainForm};
+  MainFormUnit in 'MainFormUnit.pas' {MainForm},
+  DirSearchUnit in 'DirSearchUnit.pas';
 
 {$R *.res}
 
